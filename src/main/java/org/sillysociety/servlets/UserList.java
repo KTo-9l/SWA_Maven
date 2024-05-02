@@ -31,7 +31,7 @@ public class UserList extends HttpServlet {
             Connection con = ds.getConnection();
             stmt = con.createStatement();
 
-            rs = stmt.executeQuery("SELECT id, login, password, email, role FROM users");
+            rs = stmt.executeQuery("SELECT id, login, password, email, role, deleted FROM users");
 
             PrintWriter out = resp.getWriter();
             resp.setContentType("text/html");

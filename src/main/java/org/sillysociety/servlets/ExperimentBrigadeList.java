@@ -34,17 +34,11 @@ public class ExperimentBrigadeList extends HttpServlet {
             Connection con = ds.getConnection();
             stmt = con.createStatement();
 
-//            String sqlQuery = "SELECT br.brigade_id, br.member_first, br.member_second, " +
-//                    "ex.experiment_id, ex.experiment_name, ex.experiment_status " +
-//                    "FROM experiment_brigade AS exb " +
-//                    "JOIN brigade AS br ON exb.brigade_id = br.brigade_id JOIN 'experiment' AS ex ON exb.experiment_id = ex.experiment_id";
-//            rs = stmt.executeQuery(sqlQuery);
-            String stroka = "";
-            stroka.concat("SELECT br.brigade_id, br.member_first, br.member_second FROM experiment_brigade AS exb JOIN brigade AS br ON exb.brigade_id = br.brigade_id JOIN govno AS gov ON exb.gov_id = gov.brigade_id");
-            String MYQUERY = stroka;
-            rs = stmt.executeQuery(MYQUERY);
-
-
+            rs = stmt.executeQuery("SELECT br.brigade_id, br.member_first, br.member_second, " +
+                    "ex.experiment_id, ex.experiment_name, ex.experiment_status " +
+                    "FROM experiment_brigade AS exb " +
+                    "JOIN brigade AS br ON exb.brigade_id = br.brigade_id " +
+                    "JOIN experiment AS ex ON exb.experiment_id = ex.experiment_id");
 
             PrintWriter out = resp.getWriter();
             resp.setContentType("text/html");
